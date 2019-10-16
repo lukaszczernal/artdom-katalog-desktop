@@ -1,0 +1,13 @@
+<!-- <div class="pages" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+  <div class="pages__page" *ngFor="let page of (pagesStore | async)" cdkDrag>
+    <span>{{page.filename}}</span>
+  </div>
+</div> -->
+
+<div class="example-container" cdkDropListGroup>
+  <div cdkDropList [cdkDropListEnterPredicate]="dropListEnterPredicate" (cdkDropListDropped)="dropListDropped($event)"></div>
+  <div cdkDropList *ngFor="let item of items"
+       [cdkDropListEnterPredicate]="dropListEnterPredicate" (cdkDropListDropped)="dropListDropped($event)">
+    <div cdkDrag class="example-box" (cdkDragMoved)="dragMoved($event);">{{item}}</div>
+  </div>
+</div>

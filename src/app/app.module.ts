@@ -14,14 +14,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { HomeModule } from './home/home.module';
-
 import { AppComponent } from './app.component';
+import { CatalogModule } from './catalog/catalog.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyBHeFSmoFCTct9rb1420ByPfiRBbkRj0kI',
+  authDomain: 'artdom-katalog-desktop.firebaseapp.com',
+  databaseURL: 'https://artdom-katalog-desktop.firebaseio.com',
+  projectId: 'artdom-katalog-desktop',
+  storageBucket: 'artdom-katalog-desktop.appspot.com',
+  messagingSenderId: '12057105480',
+  appId: '1:12057105480:web:10032e3bf7e20b82'
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,8 +43,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     CoreModule,
     SharedModule,
-    HomeModule,
+    CatalogModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
